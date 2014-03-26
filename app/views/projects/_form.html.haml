@@ -1,4 +1,4 @@
-#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog"}
   = form_for @project do |f|
     .modal-dialog
       .modal-content
@@ -9,35 +9,35 @@
           .control-group
             = f.label(:project_title, :class => "control-label")
             .controls
-              = f.text_field(:project_title, :class => "input-xlarge field")
+              = f.text_field :project_title
           .control-group
             = f.label(:created_by, :class => "control-label")
             .controls
-              = f.text_field(:created_by, :class => "input-xlarge field")
+              = f.text_field :created_by
           .control-group
             = f.label(:created_at, :class => "control-label")
             .controls
-              = f.text_field(:created_at, :class => "input-xlarge field")
+              = f.text_field :created_at
           .control-group
             = f.label(:project_details, :class => "control-label")
             .controls
-              = f.text_field(:project_details, :class => "input-xlarge field")
+              = f.text_field :project_details
           .control-group
             = f.label(:starts_at, :class => "control-label")
             .controls
-              = f.text_field(:starts_at, :class => "input-xlarge field")
+              = f.text_field :starts_at
           .control-group
             = f.label(:ends_at, :class => "control-label")
             .controls
-              = f.text_field(:ends_at, :class => "input-xlarge field")
+              = f.text_field :ends_at
           .control-group
             = f.label(:status, :class => "control-label")
             .controls
-              = f.text_field(:status, :class => "input-xlarge field")
+              = f.select :status, Project::STATUS.collect{|v, k| [v, k]}, :prompt => "please select option"
           .control-group
             = f.label(:invite_people, :class => "control-label")
             .controls
-              = f.text_field(:invite_people, :class => "input-xlarge field")
+              = f.select :invite_people, User.all.collect{|a| a.first_name}, :class => "form-control multiselect", :multiple => "multiple"
           / .input-group.date
           /   %input.form-control{type: "text"}/
           /   %span.input-group-addon
@@ -57,4 +57,15 @@
       autoclose: true,
       todayHighlight: true
     });
+    $('#project_starts_at').datepicker({
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+    $('#project_ends_at').datepicker({
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+    $('.multiselect').multiselect();
   })

@@ -1,0 +1,60 @@
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  = form_for @project do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4#myModalLabel.modal-title Project Form
+        .modal-body
+          .control-group
+            = f.label(:project_title, :class => "control-label")
+            .controls
+              = f.text_field(:project_title, :class => "input-xlarge field")
+          .control-group
+            = f.label(:created_by, :class => "control-label")
+            .controls
+              = f.text_field(:created_by, :class => "input-xlarge field")
+          .control-group
+            = f.label(:created_at, :class => "control-label")
+            .controls
+              = f.text_field(:created_at, :class => "input-xlarge field")
+          .control-group
+            = f.label(:project_details, :class => "control-label")
+            .controls
+              = f.text_field(:project_details, :class => "input-xlarge field")
+          .control-group
+            = f.label(:starts_at, :class => "control-label")
+            .controls
+              = f.text_field(:starts_at, :class => "input-xlarge field")
+          .control-group
+            = f.label(:ends_at, :class => "control-label")
+            .controls
+              = f.text_field(:ends_at, :class => "input-xlarge field")
+          .control-group
+            = f.label(:status, :class => "control-label")
+            .controls
+              = f.text_field(:status, :class => "input-xlarge field")
+          .control-group
+            = f.label(:invite_people, :class => "control-label")
+            .controls
+              = f.text_field(:invite_people, :class => "input-xlarge field")
+          / .input-group.date
+          /   %input.form-control{type: "text"}/
+          /   %span.input-group-addon
+          /     %i.glyphicon.glyphicon-th
+          .control-group
+            = f.submit "Save", :class => "btn btn-primary"
+          / #sandbox-container.span5.col-md-5
+          /   #datepicker.input-daterange.input-group
+          /     = f.text_field :valid_from, :class => "input-sm form-control"
+          /     %span.input-group-addon to
+          /     = f.text_field :valid_to, :class => "input-sm form-control"
+
+:javascript
+  $(document).ready(function(){
+    $('#project_created_at').datepicker({
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+  })

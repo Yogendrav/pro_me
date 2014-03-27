@@ -42,15 +42,19 @@
         %a{href: "#"} Tasks
       .time_log
         %a{href: "#"} Time Log
-      .create_new{"data-target" => "#myModal", "data-toggle" => "modal"}
-        %a{href: "#", :id => "create_new_project"} Create New
+      -if user_signed_in?
+        .create_new{style: "padding-bottom: 24px;"}
+          %a{"data-target" => "#myModal", "data-toggle" => "modal"}
+            Create New
+        #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", role: "dialog", style: "display: none;", tabindex: "-1"}
+          = render :partial => "layouts/project_modal_form"
 
 :javascript
-  $(document).ready(function(){
-    $("#create_new_project").click(function(){
-      $.ajax({
-        url: "/projects/new",
-        method: "GET"
-      }); 
-    })
-  })
+  / $(document).ready(function(){
+  /   $("#create_new_project").on('click', function(){
+  /     $.ajax({
+  /       url: "/projects/new",
+  /       type: "GET"
+  /     }); 
+  /   })
+  / })

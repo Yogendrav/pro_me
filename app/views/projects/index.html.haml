@@ -30,9 +30,10 @@
   - @projects.each do |project|
     #slideToggle.msgactive.msg
       .profile_pic
-        %img{alt: "", src: "images/profile_png.png"}/
+        = image_tag current_user.avatar.tiny.url
       .time_btn
-        %a{href: "#"} 5:30
+        %a{href: "#"}
+          = project.created_at.strftime("%H:%M " '%d.%m.%Y')
       .content_text
         %h3
           = project.project_title
@@ -41,16 +42,19 @@
       .new_msgs
         %h3 2
         %a{href: "#"} New Messages
-        %p 06/03/2011
+        %p
+          = project.project_starts_on
+        %p
+          = project.project_ends_on
       .drop_arrow
         %a{href: "#"} arrow
     .info_main_box
       .info
-        = image_tag "info.png"
+        = project.invite_people
         %textarea{cols: "50", rows: "4"}
           = project.project_details
       .info
-        = image_tag "attachment.png"
+        = project.status
         .attch_box
           .attach
             %a{href: "#"} Task_New_layout.PNG (48KB)
@@ -62,24 +66,7 @@
           %textarea{cols: "50", rows: "1"}
           %a{href: "#"}
             = image_tag "attachment.png"
-        .clearfix  
-        .line_bar  
-        .comment_box
-          .user
-            %a.attachment_blue_box{href: "#"}
-              = image_tag "attachment_blue.png"
-            %a{href: "#"} Thiyagu
-            %span 3 hours ago
-            .clearfix  
-            %p Creating task page mockup. Still alot of works pending.
-            %p Will take more than 2 days I guess....! Pls download new screens.
-          .user.blue_box
-            %a{href: "#"} Sumanth
-            %span 10 hours ago
-            %p Thiyagu, How's things going on?
-          .user.blue_box.cntr
-            = image_tag "loading.gif"
-
+        .clearfix
 
 :javascript
   $("#slideToggle").click(function () {

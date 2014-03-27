@@ -17,7 +17,7 @@
           .control-group
             = f.label(:created_at, :class => "control-label")
             .controls
-              = f.text_field :created_at
+              = f.text_field :created_at, :id => "project_created_date"
           .control-group
             = f.label(:project_details, :class => "control-label")
             .controls
@@ -25,11 +25,11 @@
           .control-group
             = f.label(:starts_at, :class => "control-label")
             .controls
-              = f.text_field :starts_at
+              = f.text_field :starts_at, :id => "project_start"
           .control-group
             = f.label(:ends_at, :class => "control-label")
             .controls
-              = f.text_field :ends_at
+              = f.text_field :ends_at, :id => "project_end"
           .control-group
             = f.label(:status, :class => "control-label")
             .controls
@@ -37,11 +37,7 @@
           .control-group
             = f.label(:invite_people, :class => "control-label")
             .controls
-              = f.select :invite_people, User.all.collect{|a| a.first_name}, :class => "form-control multiselect", :multiple => "multiple"
-          / .input-group.date
-          /   %input.form-control{type: "text"}/
-          /   %span.input-group-addon
-          /     %i.glyphicon.glyphicon-th
+              = f.select :invite_people, User.all.collect{|a| a.first_name}, :prompt => "please select option"
           .control-group
             = f.submit "Save", :class => "btn btn-primary"
           / #sandbox-container.span5.col-md-5

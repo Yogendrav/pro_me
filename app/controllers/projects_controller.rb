@@ -21,10 +21,8 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(params[:project])
-		debugger
-		@project.project_managements.build
 		if @project.save
-			redirect_to project_path(@project)
+			redirect_to projects_path
 		else
 			render 'new'
 		end

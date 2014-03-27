@@ -1,0 +1,58 @@
+.form-horizontal{:role => "form"}
+  = form_for @project do |f|
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h3#myModalLabel.modal-title{:style => "text-align:center; color:#424A57"} Project Form
+        .modal-body
+          .control-group
+            = f.label(:project_title, :class => "control-label ")
+            .controls
+              = f.text_field :project_title
+          .control-group
+            = f.label(:created_by, :class => "control-label")
+            .controls
+              = f.text_field :project_created_by, :value => "#{current_user.first_name}", :readonly => true
+          .control-group
+            = f.label(:project_details, :class => "control-label")
+            .controls
+              = f.text_area :project_details, :rows => 5, :id => "pro_details"
+          .control-group
+            = f.label(:starts_at, :class => "control-label")
+            .controls
+              = f.text_field :project_starts_on
+          .control-group
+            = f.label(:ends_at, :class => "control-label")
+            .controls
+              = f.text_field :project_ends_on
+          .control-group
+            = f.label(:status, :class => "control-label")
+            .controls
+              = f.select :status, Project::STATUS.collect{|v, k| [v, k]}, :prompt => "please select option", :id => "pro_status", :multiple => true
+          .control-group
+            = f.label(:invite_people, :class => "control-label")
+            .controls
+              = f.select :invite_people, @users.reject {|user| user == current_user}.map(&:first_name), :prompt => "please select option", :id => "inviting_people", :multiple => true
+          .modal-footer{:style => "text-align:center"}
+            %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+            = f.submit "Create Project", :class => "btn btn-primary"
+
+  :javascript
+    $(document).ready(function(){
+      $('#project_project_created_on').datepicker({
+        calendarWeeks: true,
+        autoclose: true,
+        todayHighlight: true
+      });
+      $('#project_project_starts_on').datepicker({
+        calendarWeeks: true,
+        autoclose: true,
+        todayHighlight: true
+      });
+      $('#project_project_ends_on').datepicker({
+        calendarWeeks: true,
+        autoclose: true,
+        todayHighlight: true
+      });
+    })

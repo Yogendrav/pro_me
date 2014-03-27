@@ -18,16 +18,18 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem "less-rails"
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+  gem 'twitter-bootstrap-rails'
   gem 'jquery-rails'  
 end
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
-                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+                                  :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
 gem 'devise'
 gem "haml-rails"
 gem 'rmagick', '2.13.2', :git=>'http://github.com/rmagick/rmagick.git'
 gem 'carrierwave'
+gem 'bootstrap-multiselect-rails'
+gem 'ckeditor_rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -15,4 +15,6 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-multiselect
+//= require ckeditor-jquery
+//= require jquery.multiselect.js
 //= require_tree .
